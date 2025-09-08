@@ -1,24 +1,18 @@
 "use client";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import styles from "./page.module.scss";
-import LoaderButton from "@/components/ui/LoaderButton";
-import WhiteButton from "@/components/ui/WhiteButton";
 import Footer from "@/components/footer/Footer";
-import members from "@/public/company-animate.svg";
+
 
 
 type Profile = {
-    profileImage: any,
+    profileImage: string,
     name: string,
     role: string,
     bio: string,
 
-}
-const entranceVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 50, transition: { duration: 0.5, delay: 0.1 } }, 
 }
 
 const ProfileCard = ({profileImage, name, role, bio}: Profile) => {

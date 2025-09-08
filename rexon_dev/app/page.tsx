@@ -13,7 +13,7 @@ import Link from "next/link";
 // ServiceCard component
 type ServiceCardProps = {
   title: string;
-  image: any;
+  image: string;
   description: string;
 };
 
@@ -26,7 +26,7 @@ type SplitTextProps = {
 
 // design showcase component
 type DesignShowcaseProps = {
-  thumbnail: any;
+  thumbnail: string;
   title: string; 
   tag: string;
 
@@ -165,7 +165,7 @@ function DesignShowcase ({thumbnail, title, tag, teaser, embed}: DesignShowcaseP
 
         </div>
       </motion.div>
-      
+
     </div>
   )
 };
