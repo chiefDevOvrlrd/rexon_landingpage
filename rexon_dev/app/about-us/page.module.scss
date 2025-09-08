@@ -1,0 +1,130 @@
+.aboutUs{
+  padding: 200px 120px 0px;
+
+  &__header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+
+    &__image{
+      height: 400px;
+
+
+      img{
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    &__text{
+      
+      h2{
+        font-size: 3.5rem;
+        line-height: 4rem;
+        margin-bottom: 20px;
+      }
+      p{
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+
+      }
+    }
+  }
+
+  .ourEngineers{
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    &:has(.profileCard:hover) .profileCard:not(:hover) {
+      filter: blur(4px);
+      transition: filter 0.3s ease;
+  }
+  }
+}
+
+.profileCard{
+  height: 400px;  
+  flex: 1 1 calc(33.333% - 1.5rem); // 3 per row
+  max-width: 400px;  
+  border-radius: 15px;
+  overflow: hidden;
+  transition: height 0.3s ease;
+  position: relative;
+
+  &__picture{
+    height: 100%;
+    position: relative;
+
+    img{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+  }
+
+  &__info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.813), transparent);
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: height 0.3s ease;
+
+    h3{
+      margin: 0 0 5px 0;
+      font-size: 1.2rem;
+      transform: translateY(120px);
+      transition: transform 0.3s ease;
+    }
+
+    .role{
+      margin: 0;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-weight: 600;
+    }
+
+    .bio{
+      margin: 10px 0;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      
+    }
+  }
+
+  &:hover{
+    // height: 300px;
+    .profileCard__picture{
+      img{
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .profileCard__info{
+      height: 180px;
+
+      h3{
+        transform: translateY(-10px);
+      }
+
+      .role, .bio{
+        opacity: 1;
+      }
+    }
+  }
+}
