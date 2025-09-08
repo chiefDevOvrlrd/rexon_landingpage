@@ -18,7 +18,10 @@ export default function NavBar () {
                 </div>
                 <Link href={'/'}>
                     <motion.div className={styles.nav__logo} layoutId="logo">
-                        <Image src="/logo.svg" alt="rexon logo" className={styles.logo}/>
+                        <Image src="/logo.svg" alt="rexon logo" className={styles.logo}
+                            width={80}
+                            height={50}
+                        />
                         <motion.span
                             className={styles.nav__category}
                             initial={{ opacity: 0, x: -30 }}

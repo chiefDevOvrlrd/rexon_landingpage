@@ -16,7 +16,10 @@ export default function LoadingScreen ({animateUp}:{animateUp: boolean}) {
                     exit={{ opacity: 0, transition: { duration: 0.8 } }}
                 >
                 <motion.div className={styles.logo__section} layoutId="logo">
-                    <Image src="/logo.svg" alt="rexon logo" className={styles.logo} />
+                    <Image src="/logo.svg" alt="rexon logo" className={styles.logo}
+                        width={450}
+                        height={300}
+                    />
 
                     <motion.span
                     className={styles.logo__category}

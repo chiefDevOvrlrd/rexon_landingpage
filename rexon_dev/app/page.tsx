@@ -39,7 +39,7 @@ function ServiceCard({ title, image, description }: ServiceCardProps) {
     <div className={styles.service__grid__item}>
       <div className={styles.service__grid__item_face2}>
         <div className={styles.content}>
-          <Image src={image} alt={title} style={{ width: "100%", height: "auto" }} />
+          <Image src={image} alt={title} width={200} height={100}/>
           <h3>{description}</h3>
         </div>
       </div>
@@ -107,7 +107,7 @@ function DesignShowcase ({thumbnail, title, tag, teaser, embed}: DesignShowcaseP
         {/* Netflix effect: swap image for video on hover if teaser exists */}
         {teaser ? (
           !hovered ? (
-            thumbnail && <Image src={thumbnail} alt={title} />
+            thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
           ) : (
             <video
               autoPlay
@@ -122,7 +122,7 @@ function DesignShowcase ({thumbnail, title, tag, teaser, embed}: DesignShowcaseP
             </video>
           )
         ) : (
-          thumbnail && <Image src={thumbnail} alt={title} />
+          thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
         )}
         {/* Show embed iframe if embed exists and showEmbed is true */}
         {embed && embed.trim() !== "" && showEmbed && hovered && (
@@ -198,7 +198,13 @@ const letter = {
 
 const textVariant = {
   hidden: { opacity: 0, y: 50 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.5, delay: i * 2, } }), 
+  visible: (i: number) => ({ 
+    opacity: 1, y: 0, 
+    transition: { 
+      duration: 0.5, 
+      delay: i * 2, 
+    } 
+  }), 
 
 }
 const infoVariant = {
@@ -216,8 +222,8 @@ export default function Home() {
   const ctaIsInView = useInView(ctaRef, {amount: 0.2, once: true });
 
   const serviceHeader = "How we help you?";
-  const showCaseHeader = "Don&apos;t just take our word for it."
-  const ctaHeader = "You can dream but don&apos;t<br/>neglect the execution!"
+  const showCaseHeader = "Don\'t just take our word \nfor it.";
+  const ctaHeader = "You can dream but don\'t\nneglect the execution!";
 
   return (
     <div className={styles.home__page}>
@@ -249,7 +255,8 @@ export default function Home() {
           <Image src="/hero.svg" 
             alt="hero image" 
             className={styles.hero__img}
-            style={{ width: "100%", height: "auto" }}
+            width={700}
+            height={500}
           />
         </div>
       </motion.div>
@@ -263,7 +270,8 @@ export default function Home() {
               <Image
                 src="/setup-analytics-animate.svg"
                 alt="Service SVG"
-                style={{ width: "100%", height: "auto" }}
+                width={700}
+                height={500}
               />
             )}
           </div>
@@ -336,14 +344,14 @@ export default function Home() {
               isVisible={showCaseSvgIsInView} 
             />
             <motion.h3
-              variants={textVariant} custom={0}
+              variants={textVariant} custom={2}
               initial="hidden"
               animate={showCaseSvgIsInView ? "visible" : "hidden"}
             >Take our showcase too</motion.h3>
           </div>
           <div className={styles.showcase__header__image}>
             {showCaseSvgIsInView&&(
-              <Image src="/online-gallery-animate.svg" alt="gallery" style={{ width: "100%", height: "auto" }}/>
+              <Image src="/online-gallery-animate.svg" alt="gallery" width={700} height={500}/>
             )}
           </div>
         </div>
@@ -425,7 +433,7 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.cta__image}>
-            <Image src="/dreamer-animate.svg"alt="cta image" style={{ width: "100%", height: "auto" }}/>
+            <Image src="/dreamer-animate.svg"alt="cta image" width={500} height={500}/>
           </div>
         </motion.div>
       </div>

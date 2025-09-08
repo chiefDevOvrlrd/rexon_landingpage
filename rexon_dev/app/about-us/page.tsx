@@ -15,9 +15,16 @@ type Profile = {
 
 }
 
-const ProfileCard = ({profileImage, name, role, bio}: Profile) => {
+type ProfileCardProps = Profile & { custom?: number };
+
+const ProfileCard = ({profileImage, name, role, bio, custom = 0 }: ProfileCardProps) => {
     return (
-        <div className={styles.profileCard}>
+        <motion.div className={styles.profileCard}
+            variants={textVariant} custom={custom}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+        >
             <div className={styles.profileCard__picture}>
                 <Image
                     src={profileImage}
@@ -31,8 +38,20 @@ const ProfileCard = ({profileImage, name, role, bio}: Profile) => {
                     <p className={styles.bio}>{bio}</p>
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
+}
+
+const textVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({ 
+        opacity: 1, y: 0, 
+        transition: { 
+            duration: 0.5, 
+            delay: i * 0.3, 
+        } 
+    }), 
+
 }
 
 const AboutUs = () => {
@@ -40,7 +59,7 @@ const AboutUs = () => {
 
     const headerRefIsInView = useInView(headerRef, {amount: "some", once: true})
     return(
-        <div
+        <motion.div
             className={styles.aboutUs}
         >
             <div className={styles.aboutUs__header} ref={headerRef}>
@@ -49,7 +68,8 @@ const AboutUs = () => {
                         <Image
                             src="/company-animate.svg"
                             alt="rexon members"
-                            style={{ width: "100%", height: "auto" }}
+                            width={700}
+                            height={500}
                         />
                     )}
                 </div>
@@ -103,6 +123,7 @@ const AboutUs = () => {
                         name={engineers.name}
                         role={engineers.role}
                         bio={engineers.bio}
+                        custom={idx}
                     />
                 ))}
                 
@@ -110,7 +131,7 @@ const AboutUs = () => {
             <div>
                 <Footer/>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
