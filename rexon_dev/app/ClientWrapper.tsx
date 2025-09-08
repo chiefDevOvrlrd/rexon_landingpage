@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import LoadingScreen from "@/components/loading-screen/LoadingScreen";
 import NavBar from "@/components/nav-bar/NavBar";
-import { LayoutGroup } from "motion/react";
 
 export default function ClientWrapper({children}: {children: React.ReactNode}) {
     const [animateUp, setAnimateUp] = useState(false)

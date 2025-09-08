@@ -1,6 +1,5 @@
 "use client"
 
-import logo from "@/public/logo.svg";
 import Image from "next/image";
 import styles from "./footer.module.scss"
 import { IconBrandX } from '@tabler/icons-react';
@@ -11,7 +10,7 @@ export default function Footer() {
     return (
         <div className={styles.footer}>
             <div>
-                <Image src={logo} alt="logo" width={40} height={40} />
+                <Image src="/logo.svg" alt="logo" width={40} height={40} />
                 
             </div>
             {/* copyright text */}

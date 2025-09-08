@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "motion/react"
 import styles from "./loading-screen.module.scss";
-import Logo from "@/public/logo.svg"
 import Image from "next/image";
 
 export default function LoadingScreen ({animateUp}:{animateUp: boolean}) {
@@ -17,7 +16,7 @@ export default function LoadingScreen ({animateUp}:{animateUp: boolean}) {
                     exit={{ opacity: 0, transition: { duration: 0.8 } }}
                 >
                 <motion.div className={styles.logo__section} layoutId="logo">
-                    <Image src={Logo} alt="rexon logo" className={styles.logo} />
+                    <Image src="/logo.svg" alt="rexon logo" className={styles.logo} />
 
                     <motion.span
                     className={styles.logo__category}

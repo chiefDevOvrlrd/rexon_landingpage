@@ -216,8 +216,8 @@ export default function Home() {
   const ctaIsInView = useInView(ctaRef, {amount: 0.2, once: true });
 
   const serviceHeader = "How we help you?";
-  const showCaseHeader = "Don't just take our word for it."
-  const ctaHeader = "You can dream but don't\nneglect the execution!"
+  const showCaseHeader = "Don&apos;t just take our word for it."
+  const ctaHeader = "You can dream but don&apos;t<br/>neglect the execution!"
 
   return (
     <div className={styles.home__page}>

@@ -1,6 +1,5 @@
 import styles from "./navbar.module.scss";
 import Image from "next/image";
-import Logo from "@/public/logo.svg"
 import {motion} from "motion/react"
 import Link from "next/link";
 import BlackButton from "../ui/BlackButton";
@@ -19,7 +18,7 @@ export default function NavBar () {
                 </div>
                 <Link href={'/'}>
                     <motion.div className={styles.nav__logo} layoutId="logo">
-                        <Image src={Logo} alt="rexon logo" className={styles.logo}/>
+                        <Image src="/logo.svg" alt="rexon logo" className={styles.logo}/>
                         <motion.span
                             className={styles.nav__category}
                             initial={{ opacity: 0, x: -30 }}
