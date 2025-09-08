@@ -236,8 +236,8 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 1.5 }}
         >
           <h1>Engineering the invisible architecture of tomorrow!</h1>
-          <h3>We believe your ambition should know no limits. At Rexon Dev, <span>dream is free</span>, and we're here to build it.</h3>
-          <p>Your dedicated team for exceptional web, mobile, and custom software solutions. Let's create something extraordinary.</p>
+          <h3>We believe your ambition should know no limits. At Rexon Dev, <span>dream is free</span>, and we&apos;re here to build it.</h3>
+          <p>Your dedicated team for exceptional web, mobile, and custom software solutions. Let&apos;s create something extraordinary.</p>
           <div className={styles.hero__button}>
             <BlackButton 
               text="Start your dream" 
@@ -417,7 +417,7 @@ export default function Home() {
               variants={textVariant}
               initial="hidden"
               animate={ctaIsInView ? "visible" : "hidden"}
-            >Whether you're a startup looking to make your mark, or an established business aiming to innovate, we're here to turn your <span>Dream</span> into reality. Let's build something extraordinary together.</motion.p>
+            >Whether you&apos;re a startup looking to make your mark, or an established business aiming to innovate, we&apos;re here to turn your <span>Dream</span> into reality. Let&apos;s build something extraordinary together.</motion.p>
             <div className={styles.cta__container__button}>
               <WhiteButton 
               text={"Start your dream"}
