@@ -81,7 +81,7 @@ const AboutUs = () => {
                 >
 
                     <h2>
-                        Meet the Engineers of Rexon Dev
+                        Meet the Engineers of Rexon Dev!
                     </h2>
                     <p>
                         We are not just developers and designers; we are a team of actual engineers driven by a shared passion for building robust and elegant digital solutions. For us, creativity personified is about applying a methodical, engineering mindset to every challenge, transforming your digital dreams into tangible realities.
@@ -111,10 +111,25 @@ const AboutUs = () => {
                         role: "UI/UX Engineer, Chief Product Officer",
                         bio: "Emmanuel, CPO and lead UI/UX engineer, combines a keen eye for design with a user-centric approach. Proficient in Figma, and user research methodologies, he ensures every project not only meets business goals but also delivers an exceptional user experience and best believe he's always ging to deliver."
                     },{
+                        profileImage: "/profiles/ebubePP.jpg",
+                        name: "Ebubechi Ihediwa",
+                        role: "Mobile Engineer, Head of Mobile Development",
+                        bio: "Ebube is a highly experienced mobile developer specializing in React Native. With years of building fast, reliable, and user-friendly apps, he ensures our mobile solutions run smoothly across platforms. His expertise helps the agency deliver seamless mobile experiences that match modern user expectations."
+                    },{
                         profileImage: "/profiles/ifeanyiPP.jpg",
                         name: "Ifeanyi Ojukwu",
                         role: "UI/UX Engineer",
-                        bio: "Ifeanyi, a talented UI/UX engineer, is dedicated to creating intuitive and engaging user experiences. With expertise in design tools like Figma and a strong understanding of user behavior, he crafts interfaces that are both visually appealing and easy to navigate."
+                        bio: "Ifeanyi, a talented UI/UX engineer, is dedicated to creating intuitive and engaging user experiences. With expertise in design tools like Figma and a strong understanding of user behavior, he crafts interfaces that are both visually appealing and easy to navigate, he has a real knack for knowing designs that just fit."
+                    },{
+                        profileImage: "/profiles/zionPP.jpg",
+                        name: "Zion Ubesie",
+                        role: "Full-Stack Engineer",
+                        bio: "Zion navigates both frontend and backend with ease, weaving together code that is efficient, scalable, and purposeful. His work bridges design and functionality, ensuring projects feel seamless end to end. With a knack for fresh perspectives, he injects energy and inventive thinking into every build he touches."
+                    },{
+                        profileImage: "/profiles/sammyPP.jpg",
+                        name: "Samuel Kalu-Ichie",
+                        role: "Project Manager, UI/UX designer",
+                        bio: "Sammy, our project manager and UI/UX designer, ensures smooth project execution from start to finish. With a keen eye for design and a knack for organization, he coordinates teams and timelines while crafting user-centric designs that enhance overall project quality. His dual expertise keeps our projects on track and visually compelling."
                     }
                 ].map((engineers, idx)=>(
                     <ProfileCard

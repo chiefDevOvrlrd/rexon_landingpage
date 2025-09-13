@@ -223,7 +223,7 @@ export default function Home() {
 
   const serviceHeader = "How we help you?";
   const showCaseHeader = "Don\'t just take our word \nfor it.";
-  const ctaHeader = "You can dream but don\'t\nneglect the execution!";
+  const ctaHeader = `You can dream but don\'t\nneglect the execution!`;
 
   return (
     <div className={styles.home__page}>

@@ -1,0 +1,214 @@
+.projects{
+    padding: 200px 120px 0px;
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        &__text{
+            h1{
+                font-size: 4.5rem;
+                line-height: 4rem;
+                margin-bottom: 20px;
+                background-color: var(--background);
+            }
+            h3{
+                font-size: 1.5rem;
+                font-weight: 500;
+                margin-bottom: 20px;
+            }
+        }
+    }
+    &__content{
+        margin-top: 100px;
+        min-height: 100vh;
+        ol{
+            list-style: square;
+            li{
+                span{
+                    background: rgba(77, 77, 77, 0.092);
+                    border-radius: 45px;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.64);
+                    padding: 5px 5px;
+                    font-size: 0.6rem;
+                    margin: 30px 0;
+                }
+                font-size: 1rem;
+            }
+        }
+        &__grid{
+            display: flex;
+            justify-content: center;
+            margin: 100px 0;
+            flex-wrap: wrap;
+            gap: 1.5rem;    
+        }
+    }
+}   
+
+
+.showcase__grid__item{
+    background-color: var(--foreground);
+    position: relative;
+    max-width: 400px;
+    color: var(--background);
+    height: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border-radius: 15px;
+    border: 1.5px solid var(--background);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    flex: 0 0 calc((100% - 3rem) / 3);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .showcase__media{
+        border-radius: 15px;
+        overflow: hidden;
+        min-height: 200px;
+        width: 400px;
+
+        img{
+            width: 100%;
+            height: 100%;
+        
+        }
+        .showcase__iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+    }
+    .showcase__info{
+        display: none;
+        padding: 10px 15px;
+        color: var(--background);
+        transition: all 0.3s ease-in-out;
+        h2{
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 10px 0 5px 0;
+        }
+        span{
+            background: rgba(77, 77, 77, 0.092);
+            border-radius: 45px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.64);
+            padding: 5px 5px;
+            font-size: 0.5rem;
+            margin: 30px 0;
+        }
+        p{
+            font-size: 1rem;
+            font-weight: 300;
+            line-height: 1.5;
+            margin: 10px 0;
+        }
+        .figma__button__container{
+            margin: 20px 0;
+        }
+    }
+    &:hover{
+        height: fit-content;
+        scale: 1.2;
+        transition: all 0.3s ease-in-out;
+        z-index: 20;
+        .showcase__media{
+            transition: all 0.3s ease-in-out;
+            height: 200px;
+        }
+        .showcase__info{
+            display: block;
+        }
+    }
+}
+
+
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.card-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.card-container {
+  position: relative;
+  width: 250px;
+  height: 150px;
+  cursor: pointer;
+  z-index: 10;
+  
+  &:hover {
+    z-index: 20;
+  }
+  
+  .card {
+    transition: all 300ms ease-in-out;
+  }
+
+  .card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.5rem;
+    background-color: #252525;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 300ms ease-in-out;
+    transform: scale(1.25) translateY(0.5rem);
+    transform-origin: top center;
+  }
+}
+
+.card-container:hover {
+  .card {
+    transform: scale(1.25) translateY(-10px);
+  }
+  
+  .card-overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.25) translateY(0);
+  }
+}
+
+.card-content {
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.card-description {
+  font-size: 0.875rem;
+  color: #a3a3a3;
+}
