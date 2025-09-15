@@ -91,15 +91,7 @@
             font-weight: 700;
             margin: 10px 0 5px 0;
         }
-        span{
-            background: rgba(77, 77, 77, 0.092);
-            border-radius: 45px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.64);
-            padding: 5px 5px;
-            font-size: 0.5rem;
-            margin: 30px 0;
-        }
+        
         p{
             font-size: 1rem;
             font-weight: 300;
@@ -127,88 +119,108 @@
 
 
 
-.title {
-  font-size: 1.875rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 3rem;
+
+.card__container {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 20px;
+    z-index: 10;
+    color: var(--background);
+    
+    &:hover {
+        z-index: 20;
+    }
+    
+    .card {
+        transition: all 300ms ease-in-out;
+    }
+
+    .card__image {
+        width: 400px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+        img{
+            width: 100%;
+            height: 100%;
+            
+        }
+    }
+
+    .card__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: fit-content;
+        border-radius: 0.5rem;
+        background-color: var(--foreground);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 300ms ease-in-out;
+        transform: translateY(2.5rem);
+        transform-origin: top center;
+        overflow: hidden;
+
+    }
 }
 
-.card-grid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 3rem;
+.card__container:hover {
+    .card {
+        transform: translateY(-10px);
+    }
+    
+    .card__overlay {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50px);
+    }
 }
 
-.card-container {
-  position: relative;
-  width: 250px;
-  height: 150px;
-  cursor: pointer;
-  z-index: 10;
-  
-  &:hover {
-    z-index: 20;
-  }
-  
-  .card {
-    transition: all 300ms ease-in-out;
-  }
-
-  .card-image {
-    width: 100%;
-    height: 100%;
+.card__media {
+    width: 400px;
+    height: 200px;
+    border-radius: 0.5rem;
     object-fit: cover;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  }
+    video{
+        width: 100%;
+        height: 100%;
+    }
+}
 
-  .card-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+.card__content {
+    padding: 1rem;
     height: 100%;
-    border-radius: 0.5rem;
-    background-color: #252525;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 300ms ease-in-out;
-    transform: scale(1.25) translateY(0.5rem);
-    transform-origin: top center;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.card-container:hover {
-  .card {
-    transform: scale(1.25) translateY(-10px);
-  }
-  
-  .card-overlay {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1.25) translateY(0);
-  }
+.card__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 5px 0 5px 0;
 }
 
-.card-content {
-  padding: 1rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+.card__tag {
+    background: rgba(77, 77, 77, 0.092);
+    border-radius: 45px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.64);
+    padding: 5px 5px;
+    font-size: 0.5rem;
+    margin: 15px 0;
+    max-width: fit-content;
 }
 
-.card-title {
-  font-weight: bold;
-  font-size: 1.125rem;
-  margin-bottom: 0.25rem;
-}
-
-.card-description {
-  font-size: 0.875rem;
-  color: #a3a3a3;
+.card__description {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
 }

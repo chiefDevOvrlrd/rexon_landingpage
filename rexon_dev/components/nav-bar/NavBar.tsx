@@ -1,12 +1,38 @@
+'use client';
+
 import styles from "./navbar.module.scss";
 import Image from "next/image";
 import {motion} from "motion/react"
 import Link from "next/link";
 import BlackButton from "../ui/BlackButton";
+import { useState, useEffect } from 'react';
+
+const barVariant = {
+    visible: { opacity: 1, y:0 },
+    hidden: { opacity: 0, y: -100}
+}
 
 export default function NavBar () {
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY) {
+                setIsVisible(false);
+            } else {
+                setIsVisible(true);
+            }
+            lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
     return(
-        <div className={styles.nav}>
+        <motion.div className={styles.nav} variants={barVariant} animate={isVisible ? "visible" : "hidden"} transition={{ duration: 0.3, ease: "easeInOut" }}>
             <div className={styles.nav__container}>
                 <div className={styles.nav__links}>
                         <ul>
@@ -40,6 +66,6 @@ export default function NavBar () {
                     />
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }

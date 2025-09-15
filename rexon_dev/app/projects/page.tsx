@@ -6,8 +6,7 @@ import { useState, useRef } from "react"
 import Image from "next/image"
 import WhiteButton from "@/components/ui/WhiteButton";
 import LoaderButton from "@/components/ui/LoaderButton";
-import BlackButton from "@/components/ui/BlackButton";
-
+import Footer from "@/components/footer/Footer";
 
 type DesignShowcaseProps = {
     thumbnail: string;
@@ -54,32 +53,12 @@ const textVariant = {
     }), 
 }
 
-const HoverCard = ({ image, title, description }: HoverCardProps) => {
-  return (
-    <div className="card-container">
-      <div className="card">
-        <img
-          src={image}
-          alt={title}
-          className="card-image"
-        />
-      </div>
-      <div className="card-overlay">
-        <div className="card-content">
-          <h2 className="card-title">{title}</h2>
-          <p className="card-description">{description}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-function DesignShowcase ({thumbnail, title, tag, description, teaser, embed, custom = 0}: ProjectsProps){
+const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, custom = 0}: ProjectsProps) => {
     const [hovered, setHovered] = useState(false);
     const [showEmbed, setShowEmbed] = useState(false);
     const [loading, setLoading] = useState(false);
 
-        const handleShowEmbed = () => {
+    const handleShowEmbed = () => {
         setLoading(true);
         setShowEmbed(true);
         setHovered(true);
@@ -93,87 +72,177 @@ function DesignShowcase ({thumbnail, title, tag, description, teaser, embed, cus
         setLoading(false);
         setHovered(false);
     };
-    return(
-        <motion.div
-            className={styles.showcase__grid__item}
+    return (
+        <motion.div className={styles.card__container}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => {
                 setHovered(false);
                 setShowEmbed(false);
                 setLoading(false);
             }}
-            variants={textVariant} custom={custom}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
         >
-        <div className={styles.showcase__media}>
-            {/* Netflix effect: swap image for video on hover if teaser exists */}
-            {teaser ? (
-            !hovered ? (
-                thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
-            ) : (
-                <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                className={styles.showcase__video}
-                style={{ width: "100%", borderRadius: "12px" }}
-                >
-                <source src={teaser} type="video/mp4" />
-                y0ur browser does not support the video tag.
-                </video>
-            )
-            ) : (
-            thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
-            )}
-            {/* Show embed iframe if embed exists and showEmbed is true */}
-            {embed && embed.trim() !== "" && showEmbed && hovered && (
-            <iframe
-                src={embed}
-                style={{ border: "1px solid rgba(0,0,0,0.1)", width: "100%", height: "200px", borderRadius: "12px" }}
-                allowFullScreen
-                title="Figma Embed"
-                className={styles.showcase__iframe}
-            />
-            )}
-        </div>
-        <motion.div 
-            className={styles.showcase__info}
-            variants={infoVariant}
-            initial="hidden"
-            animate={hovered ? "visible" : "hidden"}
-            exit={"hidden"}
-        >
-            <h2>{title}</h2>
-            <span>{tag}</span>
-            <p>{description}</p>
-            {/* Show Figma button on hover if embed exists */}
-            <div className={styles.figma__button__container}>
-            {embed && embed.trim() !== "" && hovered &&( 
-                loading ? (
-                <LoaderButton disabled />
-                ) : showEmbed ? (
-                <WhiteButton
-                    text="Close"
-                    onClick={handleCloseEmbed}
-                />
-                )  : (
-                <WhiteButton
-                    text="Show Figma"
-                    
-                    onClick={handleShowEmbed}
-                />
-                )
-            )}
-
+            <motion.div className={styles.card} layoutId="card-media">
+                <img src={thumbnail} alt={title}  className={styles.card__image} />
+            </motion.div>
+            <div className={styles.card__overlay}>
+                <motion.div className={styles.card__media} layoutId="card-media">
+                    {teaser ? (
+                        !hovered ? (
+                            thumbnail && <img src={thumbnail} alt={title}/>
+                        ) : (
+                            <video
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                style={{ width: "100%", borderRadius: "12px" }}
+                            >
+                                <source src={teaser} type="video/mp4" />
+                                y0ur browser does not support the video tag.
+                            </video>
+                        )
+                    ) : (
+                        thumbnail && <img src={thumbnail} alt={title}/>
+                    )}
+                    {/* Show embed iframe if embed exists and showEmbed is true */}
+                    {embed && embed.trim() !== "" && showEmbed && hovered && (
+                        <iframe
+                            src={embed}
+                            style={{ border: "1px solid rgba(0,0,0,0.1)", width: "100%", height: "200px", borderRadius: "12px" }}
+                            allowFullScreen
+                            title="Figma Embed"
+                            className={styles.showcase__iframe}
+                        />
+                    )}
+                </motion.div>
+                <div className={styles.card__content}>
+                    <h2 className={styles.card__title}>{title}</h2>
+                    <span className={styles.card__tag}>{tag}</span>
+                    <p className={styles.card__description}>{description}</p>
+                    <div className={styles.figma__button__container}>
+                        {embed && embed.trim() !== "" && hovered &&( 
+                            loading ? (
+                            <LoaderButton disabled />
+                            ) : showEmbed ? (
+                            <WhiteButton
+                                text="Close"
+                                onClick={handleCloseEmbed}
+                            />
+                            )  : (
+                            <WhiteButton
+                                text="Show Figma"
+                                
+                                onClick={handleShowEmbed}
+                            />
+                            )
+                        )}
+                    </div>
+                </div>
             </div>
         </motion.div>
-
-        </motion.div>
-    )
+    );
 };
+
+// function DesignShowcase ({thumbnail, title, tag, description, teaser, embed, custom = 0}: ProjectsProps){
+//     const [hovered, setHovered] = useState(false);
+//     const [showEmbed, setShowEmbed] = useState(false);
+//     const [loading, setLoading] = useState(false);
+
+//     const handleShowEmbed = () => {
+//         setLoading(true);
+//         setShowEmbed(true);
+//         setHovered(true);
+//         setTimeout(() => {
+//         setLoading(false);
+//         }, 9000); // 9 seconds
+//     };
+
+//     const handleCloseEmbed = () => {
+//         setShowEmbed(false);
+//         setLoading(false);
+//         setHovered(false);
+//     };
+//     return(
+//         <motion.div
+//             className={styles.showcase__grid__item}
+//             onMouseEnter={() => setHovered(true)}
+//             onMouseLeave={() => {
+//                 setHovered(false);
+//                 setShowEmbed(false);
+//                 setLoading(false);
+//             }}
+//             variants={textVariant} custom={custom}
+//             initial="hidden"
+//             whileInView="visible"
+//             viewport={{ once: true, amount: 0.5 }}
+//         >
+//         <div className={styles.showcase__media}>
+//             {/* Netflix effect: swap image for video on hover if teaser exists */}
+//             {teaser ? (
+//             !hovered ? (
+//                 thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
+//             ) : (
+//                 <video
+//                 autoPlay
+//                 loop
+//                 muted
+//                 playsInline
+//                 className={styles.showcase__video}
+//                 style={{ width: "100%", borderRadius: "12px" }}
+//                 >
+//                 <source src={teaser} type="video/mp4" />
+//                 y0ur browser does not support the video tag.
+//                 </video>
+//             )
+//             ) : (
+//             thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
+//             )}
+//             {/* Show embed iframe if embed exists and showEmbed is true */}
+//             {embed && embed.trim() !== "" && showEmbed && hovered && (
+//             <iframe
+//                 src={embed}
+//                 style={{ border: "1px solid rgba(0,0,0,0.1)", width: "100%", height: "200px", borderRadius: "12px" }}
+//                 allowFullScreen
+//                 title="Figma Embed"
+//                 className={styles.showcase__iframe}
+//             />
+//             )}
+//         </div>
+//         <motion.div 
+//             className={styles.showcase__info}
+//             variants={infoVariant}
+//             initial="hidden"
+//             animate={hovered ? "visible" : "hidden"}
+//             exit={"hidden"}
+//         >
+//             <h2>{title}</h2>
+//             <span>{tag}</span>
+//             <p>{description}</p>
+//             {/* Show Figma button on hover if embed exists */}
+//             <div className={styles.figma__button__container}>
+//             {embed && embed.trim() !== "" && hovered &&( 
+//                 loading ? (
+//                 <LoaderButton disabled />
+//                 ) : showEmbed ? (
+//                 <WhiteButton
+//                     text="Close"
+//                     onClick={handleCloseEmbed}
+//                 />
+//                 )  : (
+//                 <WhiteButton
+//                     text="Show Figma"
+                    
+//                     onClick={handleShowEmbed}
+//                 />
+//                 )
+//             )}
+
+//             </div>
+//         </motion.div>
+
+//         </motion.div>
+//     )
+// };
 
 const Projects = () => {
     const headerRef = useRef<HTMLDivElement | null>(null)
@@ -236,28 +305,28 @@ const Projects = () => {
                 <div className={styles.projects__content__grid}>
                     {[
                         {
-                            thumbnail: "/the-ark.svg",
+                            thumbnail: "/projects/the-ark.svg",
                             title: "The Ark",
                             tag: "Web 3, Design",
                             description: "A sleek, modern website for a cutting-edge tech startup, showcasing their innovative solutions and dynamic team.",
                             embed: "https://embed.figma.com/design/eHBxWHbbkw2PnXlTW1o4iR/TheArk?node-id=0-1&embed-host=share",
                             teaser:"",
                         },{
-                            thumbnail: "/mzaccmainlogo.png",
+                            thumbnail: "/projects/mzaccmainlogo.png",
                             title: "Mzacc Global",
                             tag: "Web Development",
                             description:"A clean and modern landing page designed for a startup and its ten sub-companies. Showcases brand identity, smooth color transition, and a scalable layout built to unify multiple services under one platform.",
                             embed: "",
                             teaser: "/videos/mzacc.mp4",
                         },{
-                            thumbnail: "/gm-coffee.svg",
+                            thumbnail: "/projects/gm-coffee.svg",
                             title: "GM Coffee",
                             tag: "Web3, Design",
                             description: "Web3-powered UI for a ‘Buy Me a Coffee’ app, enabling simple crypto donations with a smooth, creator-focused experience.",
                             embed: "https://embed.figma.com/design/xIbUBunXa3SOsbcwIrzMRs/GM-Coffee?node-id=0-1&embed-host=share",
                             teaser: "",
                         },{
-                            thumbnail: "/attend.png",
+                            thumbnail: "/projects/attend.png",
                             title: "Attend",
                             tag: "Web Development",
                             description: "A sleek, modern landing page for a cutting-edge tech startup, showcasing their innovative solutions and dynamic team.",
@@ -273,11 +342,11 @@ const Projects = () => {
                             description={project.description}
                             teaser={project.teaser}
                             embed={project.embed}
-                            custom={index}
                         />
                     ))}
                 </div>
             </div>
+            <Footer />
         </div>
     ) 
 }
