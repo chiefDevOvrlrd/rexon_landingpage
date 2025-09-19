@@ -20,8 +20,12 @@ export default function Footer() {
 
             {/* Social Links */}
             <div className={styles.socials}>
-                <a href=""><IconBrandX stroke={2}/></a>
-                <a href=""><IconBrandLinkedin stroke={2}/></a>
+                <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)">
+                    <IconBrandX stroke={2}/>
+                </a>
+                <a href="https://linkedin.com/company/yourcompany" target="_blank" rel="noopener noreferrer" aria-label="Connect with us on LinkedIn">
+                    <IconBrandLinkedin stroke={2}/>
+                </a>
             </div>
         </div>
     );

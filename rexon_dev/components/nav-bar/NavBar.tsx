@@ -2,6 +2,7 @@
 
 import styles from "./navbar.module.scss";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {motion} from "motion/react"
 import Link from "next/link";
 import BlackButton from "../ui/BlackButton";
@@ -12,8 +13,17 @@ const barVariant = {
     hidden: { opacity: 0, y: -100}
 }
 
+const linkVariants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.2 },
+    tap: { scale: 0.9 },
+    active: { scale: 1.2 } // stays scaled up when the link is the current route
+}
+
+
 export default function NavBar () {
     const [isVisible, setIsVisible] = useState(true);
+    const pathname = usePathname();
 
     useEffect(() => {
         let lastScrollY = window.scrollY;
@@ -36,9 +46,33 @@ export default function NavBar () {
             <div className={styles.nav__container}>
                 <div className={styles.nav__links}>
                         <ul>
-                            <Link href={'/about-us'}><li>About us</li></Link>
-                            <Link href={'/projects'}><li>Projects</li></Link>
-                            <Link href={'/pricing'}><li>Pricing</li></Link>
+                            <motion.li
+                                variants={linkVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tap"
+                                animate={pathname === "/about-us" ? "active" : "initial"}
+                            >
+                                <Link href={'/about-us'}>About us</Link>
+                            </motion.li>
+                            <motion.li
+                                variants={linkVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tap"
+                                animate={pathname === "/projects" ? "active" : "initial"}
+                            >
+                                <Link href={'/projects'}>Projects</Link>
+                            </motion.li>
+                            <motion.li
+                                variants={linkVariants}
+                                initial="initial"
+                                whileHover="hover"
+                                whileTap="tap"
+                                animate={pathname === "/pricing" ? "active" : "initial"}
+                            >
+                                <Link href={'/pricing'}>Pricing</Link>
+                            </motion.li>
                             
                         </ul>
                 </div>

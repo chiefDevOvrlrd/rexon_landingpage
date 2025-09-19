@@ -9,5 +9,19 @@
         display: flex;
         gap: 1.4rem;
 
+        a {
+            
+            transition: transform 0.2s ease;
+            display: inline-block;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
     }
 }
