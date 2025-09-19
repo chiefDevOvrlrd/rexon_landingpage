@@ -282,7 +282,7 @@ export default function Home() {
               className={styles.service__text__header}
             />
             <motion.p
-              variants={textVariant}
+              variants={textVariant} custom={1}
               initial="hidden"
               animate={serviceIsInView ? "visible" : "hidden"}
               className={styles.service__text__description}

@@ -14,10 +14,10 @@ const barVariant = {
 }
 
 const linkVariants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.2 },
-    tap: { scale: 0.9 },
-    active: { scale: 1.2 } // stays scaled up when the link is the current route
+    initial: { scale: 1, color: "#454444ff" },      
+    hover: { scale: 1.2, color: "#fff" },      
+    tap: { scale: 0.9, color: "#fff" },
+    active: { scale: 1.2, color: "#fff" } 
 }
 
 
