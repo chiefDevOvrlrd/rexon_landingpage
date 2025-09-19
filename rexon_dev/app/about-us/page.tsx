@@ -17,6 +17,17 @@ type Profile = {
 
 type ProfileCardProps = Profile & { custom?: number };
 
+const textVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: (i: number) => ({ 
+        opacity: 1, y: 0, 
+        transition: { 
+            duration: 0.5, 
+            delay: i * 0.3, 
+        } 
+    }), 
+}
+
 const ProfileCard = ({profileImage, name, role, bio, custom = 0 }: ProfileCardProps) => {
     return (
         <motion.div className={styles.profileCard}
@@ -40,18 +51,6 @@ const ProfileCard = ({profileImage, name, role, bio, custom = 0 }: ProfileCardPr
             </div>
         </motion.div>
     )
-}
-
-const textVariant = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({ 
-        opacity: 1, y: 0, 
-        transition: { 
-            duration: 0.5, 
-            delay: i * 0.3, 
-        } 
-    }), 
-
 }
 
 const AboutUs = () => {

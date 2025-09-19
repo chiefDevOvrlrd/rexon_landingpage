@@ -17,11 +17,7 @@ type DesignShowcaseProps = {
     embed?: string;
 };
 
-type HoverCardProps = {
-    image: string;
-    title: string;
-    description: string;
-};
+
 
 type ProjectsProps = DesignShowcaseProps & { custom?: number };
 
@@ -37,10 +33,7 @@ const textFallVariant = {
     }),
 }
 
-const infoVariant = {
-    hidden: { opacity: 0, y: 5 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: .1 } }, 
-}
+
 
 const textVariant = {
     hidden: { opacity: 0, y: 50 },
@@ -74,6 +67,10 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
     };
     return (
         <motion.div className={styles.card__container}
+            variants={textVariant} custom={custom}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => {
                 setHovered(false);
@@ -81,11 +78,11 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
                 setLoading(false);
             }}
         >
-            <motion.div className={styles.card} layoutId="card-media">
+            <div className={styles.card}>
                 <img src={thumbnail} alt={title}  className={styles.card__image} />
-            </motion.div>
+            </div>
             <div className={styles.card__overlay}>
-                <motion.div className={styles.card__media} layoutId="card-media">
+                <div className={styles.card__media}>
                     {teaser ? (
                         !hovered ? (
                             thumbnail && <img src={thumbnail} alt={title}/>
@@ -111,10 +108,10 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
                             style={{ border: "1px solid rgba(0,0,0,0.1)", width: "100%", height: "200px", borderRadius: "12px" }}
                             allowFullScreen
                             title="Figma Embed"
-                            className={styles.showcase__iframe}
+                            className={styles.card__iframe}
                         />
                     )}
-                </motion.div>
+                </div>
                 <div className={styles.card__content}>
                     <h2 className={styles.card__title}>{title}</h2>
                     <span className={styles.card__tag}>{tag}</span>
@@ -143,111 +140,13 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
     );
 };
 
-// function DesignShowcase ({thumbnail, title, tag, description, teaser, embed, custom = 0}: ProjectsProps){
-//     const [hovered, setHovered] = useState(false);
-//     const [showEmbed, setShowEmbed] = useState(false);
-//     const [loading, setLoading] = useState(false);
-
-//     const handleShowEmbed = () => {
-//         setLoading(true);
-//         setShowEmbed(true);
-//         setHovered(true);
-//         setTimeout(() => {
-//         setLoading(false);
-//         }, 9000); // 9 seconds
-//     };
-
-//     const handleCloseEmbed = () => {
-//         setShowEmbed(false);
-//         setLoading(false);
-//         setHovered(false);
-//     };
-//     return(
-//         <motion.div
-//             className={styles.showcase__grid__item}
-//             onMouseEnter={() => setHovered(true)}
-//             onMouseLeave={() => {
-//                 setHovered(false);
-//                 setShowEmbed(false);
-//                 setLoading(false);
-//             }}
-//             variants={textVariant} custom={custom}
-//             initial="hidden"
-//             whileInView="visible"
-//             viewport={{ once: true, amount: 0.5 }}
-//         >
-//         <div className={styles.showcase__media}>
-//             {/* Netflix effect: swap image for video on hover if teaser exists */}
-//             {teaser ? (
-//             !hovered ? (
-//                 thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
-//             ) : (
-//                 <video
-//                 autoPlay
-//                 loop
-//                 muted
-//                 playsInline
-//                 className={styles.showcase__video}
-//                 style={{ width: "100%", borderRadius: "12px" }}
-//                 >
-//                 <source src={teaser} type="video/mp4" />
-//                 y0ur browser does not support the video tag.
-//                 </video>
-//             )
-//             ) : (
-//             thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
-//             )}
-//             {/* Show embed iframe if embed exists and showEmbed is true */}
-//             {embed && embed.trim() !== "" && showEmbed && hovered && (
-//             <iframe
-//                 src={embed}
-//                 style={{ border: "1px solid rgba(0,0,0,0.1)", width: "100%", height: "200px", borderRadius: "12px" }}
-//                 allowFullScreen
-//                 title="Figma Embed"
-//                 className={styles.showcase__iframe}
-//             />
-//             )}
-//         </div>
-//         <motion.div 
-//             className={styles.showcase__info}
-//             variants={infoVariant}
-//             initial="hidden"
-//             animate={hovered ? "visible" : "hidden"}
-//             exit={"hidden"}
-//         >
-//             <h2>{title}</h2>
-//             <span>{tag}</span>
-//             <p>{description}</p>
-//             {/* Show Figma button on hover if embed exists */}
-//             <div className={styles.figma__button__container}>
-//             {embed && embed.trim() !== "" && hovered &&( 
-//                 loading ? (
-//                 <LoaderButton disabled />
-//                 ) : showEmbed ? (
-//                 <WhiteButton
-//                     text="Close"
-//                     onClick={handleCloseEmbed}
-//                 />
-//                 )  : (
-//                 <WhiteButton
-//                     text="Show Figma"
-                    
-//                     onClick={handleShowEmbed}
-//                 />
-//                 )
-//             )}
-
-//             </div>
-//         </motion.div>
-
-//         </motion.div>
-//     )
-// };
 
 const Projects = () => {
     const headerRef = useRef<HTMLDivElement | null>(null)
+    const contentRef = useRef<HTMLDivElement | null>(null)
 
     const headerIsInView = useInView(headerRef, {amount: "all", once: true})
+    const contentIsInView = useInView(contentRef, {amount: 0.3, once: true})
 
     return (
         <div className={styles.projects}>
@@ -297,10 +196,26 @@ const Projects = () => {
                     )}                
                 </div>
             </div>
-            <div className={styles.projects__content}>
-                <ol>
-                    <li> Hold hover on projects with <span>web development</span>, <span>app development</span> to watch project teaser video</li>
-                    <li> Disclaimer: Not all projects listed here are commissioned company projects. Some are personal works created to demonstrate individual excellence, creativity, and technical expertise.</li>
+            <div className={styles.projects__content} ref={contentRef}>
+                <ol className={styles.projects__content__info}>
+                    <motion.li
+                        variants={textVariant}
+                        initial="hidden"
+                        animate={contentIsInView ? "visible" : "hidden"}
+                        custom={0}
+                    > Hold hover on projects with <span>web development</span>, <span>app development</span> tags to watch project teaser video</motion.li>
+                    <motion.li
+                        variants={textVariant}
+                        initial="hidden"
+                        animate={contentIsInView ? "visible" : "hidden"}
+                        custom={1}
+                    > Click on <span>Show Figma</span> button to view design files for projects with <span>design</span> tag</motion.li>
+                    <motion.li
+                        variants={textVariant}
+                        initial="hidden"
+                        animate={contentIsInView ? "visible" : "hidden"}
+                        custom={2}
+                    > Disclaimer: Not all projects listed here are commissioned company projects. Some are personal works created to demonstrate individual excellence, creativity, and technical expertise.</motion.li>
                 </ol>
                 <div className={styles.projects__content__grid}>
                     {[
@@ -342,6 +257,7 @@ const Projects = () => {
                             description={project.description}
                             teaser={project.teaser}
                             embed={project.embed}
+                            custom={index}
                         />
                     ))}
                 </div>

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styles from "./footer.module.scss"
+import Link from "next/link";
 import { IconBrandX } from '@tabler/icons-react';
 import { IconBrandLinkedin } from "@tabler/icons-react";
 
@@ -9,10 +10,9 @@ export default function Footer() {
     const year = new Date().getFullYear();
     return (
         <div className={styles.footer}>
-            <div>
+            <Link href={"/"}>
                 <Image src="/logo.svg" alt="logo" width={40} height={40} />
-                
-            </div>
+            </Link>
             {/* copyright text */}
             <div>
                 <p>©{year} Rexon. All rights reserved.</p>

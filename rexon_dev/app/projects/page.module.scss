@@ -1,5 +1,6 @@
 .projects{
     padding: 200px 120px 0px;
+    overflow: hidden;
     &__header{
         display: flex;
         justify-content: space-between;
@@ -22,8 +23,12 @@
         margin-top: 100px;
         min-height: 100vh;
         ol{
-            list-style: square;
+            list-style: none;
+            padding: 0 20px;
+            border-left: 2px solid rgba(255, 255, 255, 0.64);
             li{
+                margin: 0 0 20px 0;
+                font-weight: 300;
                 span{
                     background: rgba(77, 77, 77, 0.092);
                     border-radius: 45px;
@@ -47,75 +52,6 @@
 }   
 
 
-.showcase__grid__item{
-    background-color: var(--foreground);
-    position: relative;
-    max-width: 400px;
-    color: var(--background);
-    height: 200px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    border-radius: 15px;
-    border: 1.5px solid var(--background);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    flex: 0 0 calc((100% - 3rem) / 3);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-    .showcase__media{
-        border-radius: 15px;
-        overflow: hidden;
-        min-height: 200px;
-        width: 400px;
-
-        img{
-            width: 100%;
-            height: 100%;
-        
-        }
-        .showcase__iframe{
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-        }
-    }
-    .showcase__info{
-        display: none;
-        padding: 10px 15px;
-        color: var(--background);
-        transition: all 0.3s ease-in-out;
-        h2{
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 10px 0 5px 0;
-        }
-        
-        p{
-            font-size: 1rem;
-            font-weight: 300;
-            line-height: 1.5;
-            margin: 10px 0;
-        }
-        .figma__button__container{
-            margin: 20px 0;
-        }
-    }
-    &:hover{
-        height: fit-content;
-        scale: 1.2;
-        transition: all 0.3s ease-in-out;
-        z-index: 20;
-        .showcase__media{
-            transition: all 0.3s ease-in-out;
-            height: 200px;
-        }
-        .showcase__info{
-            display: block;
-        }
-    }
-}
 
 
 
@@ -190,6 +126,13 @@
     video{
         width: 100%;
         height: 100%;
+    }
+    .card__iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        border-radius: 0.5rem;
     }
 }
 
