@@ -39,7 +39,7 @@ function ServiceCard({ title, image, description }: ServiceCardProps) {
     <div className={styles.service__grid__item}>
       <div className={styles.service__grid__item_face2}>
         <div className={styles.content}>
-          <Image src={image} alt={title} width={200} height={100}/>
+          <Image src={image} alt={title} width={200} height={100} priority/>
           <h3>{description}</h3>
         </div>
       </div>
@@ -107,7 +107,7 @@ function DesignShowcase ({thumbnail, title, tag, teaser, embed}: DesignShowcaseP
         {/* Netflix effect: swap image for video on hover if teaser exists */}
         {teaser ? (
           !hovered ? (
-            thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
+            thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} priority/>
           ) : (
             <video
               autoPlay
@@ -122,7 +122,7 @@ function DesignShowcase ({thumbnail, title, tag, teaser, embed}: DesignShowcaseP
             </video>
           )
         ) : (
-          thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
+          thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} priority />
         )}
         {/* Show embed iframe if embed exists and showEmbed is true */}
         {embed && embed.trim() !== "" && showEmbed && hovered && (
@@ -257,6 +257,7 @@ export default function Home() {
             className={styles.hero__img}
             width={700}
             height={500}
+            priority
           />
         </div>
       </motion.div>
@@ -272,6 +273,7 @@ export default function Home() {
                 alt="Service SVG"
                 width={700}
                 height={500}
+                priority
               />
             )}
           </div>

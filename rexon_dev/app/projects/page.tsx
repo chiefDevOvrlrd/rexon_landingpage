@@ -44,7 +44,7 @@ const textVariant = {
             delay: i * 0.3, 
         } 
     }), 
-}
+};
 
 const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, custom = 0}: ProjectsProps) => {
     const [hovered, setHovered] = useState(false);
@@ -192,6 +192,7 @@ const Projects = () => {
                         <Image src="/innovation-animate.svg" alt="rexon showcase"
                             width={600}
                             height={600}
+                            priority 
                         />
                     )}                
                 </div>

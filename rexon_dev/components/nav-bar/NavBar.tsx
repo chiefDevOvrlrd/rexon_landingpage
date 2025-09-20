@@ -16,7 +16,7 @@ const barVariant = {
 const linkVariants = {
     initial: { scale: 1, color: "#454444ff" },      
     hover: { scale: 1.2, color: "#fff" },      
-    tap: { scale: 0.9, color: "#fff" },
+    tap: { scale: 1.1, color: "#fff" },
     active: { scale: 1.2, color: "#fff" } 
 }
 
