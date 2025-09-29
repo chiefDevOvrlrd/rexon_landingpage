@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import styles from "./page.module.scss";
 import { motion, useInView } from "motion/react";
-import { useState, useRef } from "react"
+import { useState, useRef, useCallback } from "react"
 import Image from "next/image"
 import WhiteButton from "@/components/ui/WhiteButton";
 import LoaderButton from "@/components/ui/LoaderButton";
@@ -15,11 +15,12 @@ type DesignShowcaseProps = {
     description: string;    
     teaser?: string;
     embed?: string;
+    custom?: number;
 };
 
 
 
-type ProjectsProps = DesignShowcaseProps & { custom?: number };
+
 
 const textFallVariant = {
     hidden: { opacity: 0, y: -50 },
@@ -46,60 +47,68 @@ const textVariant = {
     }), 
 };
 
-const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, custom = 0}: ProjectsProps) => {
+const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, custom = 0}: DesignShowcaseProps) => {
     const [hovered, setHovered] = useState(false);
     const [showEmbed, setShowEmbed] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const handleShowEmbed = () => {
+    const handleMouseEnter = useCallback(() => {
+        setHovered(true);
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+        setHovered(false);
+        setShowEmbed(false);
+        setLoading(false);
+    }, []);
+
+    const handleShowEmbed = useCallback(() => {
         setLoading(true);
         setShowEmbed(true);
         setHovered(true);
-        setTimeout(() => {
-        setLoading(false);
-        }, 9000); // 9 seconds
-    };
+    }, []);
 
-    const handleCloseEmbed = () => {
+    const handleCloseEmbed = useCallback(() => {
         setShowEmbed(false);
         setLoading(false);
         setHovered(false);
-    };
+    }, []);
+
+    const handleIframeLoad = useCallback(() => {
+        setLoading(false);
+    }, []);
     return (
         <motion.div className={styles.card__container}
             variants={textVariant} custom={custom}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => {
-                setHovered(false);
-                setShowEmbed(false);
-                setLoading(false);
-            }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             <div className={styles.card}>
-                <img src={thumbnail} alt={title}  className={styles.card__image} />
+                <Image src={thumbnail} alt={title} width={400} height={200} className={styles.card__image} />
             </div>
             <div className={styles.card__overlay}>
                 <div className={styles.card__media}>
                     {teaser ? (
                         !hovered ? (
-                            thumbnail && <img src={thumbnail} alt={title}/>
+                            thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
                         ) : (
                             <video
                                 autoPlay
                                 loop
                                 muted
                                 playsInline
+                                preload="metadata"
                                 style={{ width: "100%", borderRadius: "12px" }}
                             >
                                 <source src={teaser} type="video/mp4" />
-                                y0ur browser does not support the video tag.
+                                Your browser does not support the video tag.
                             </video>
                         )
                     ) : (
-                        thumbnail && <img src={thumbnail} alt={title}/>
+                        thumbnail && <Image src={thumbnail} alt={title} width={400} height={200} />
                     )}
                     {/* Show embed iframe if embed exists and showEmbed is true */}
                     {embed && embed.trim() !== "" && showEmbed && hovered && (
@@ -109,6 +118,8 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
                             allowFullScreen
                             title="Figma Embed"
                             className={styles.card__iframe}
+                            loading="lazy"
+                            onLoad={handleIframeLoad}
                         />
                     )}
                 </div>
@@ -228,26 +239,33 @@ const Projects = () => {
                             embed: "https://embed.figma.com/design/eHBxWHbbkw2PnXlTW1o4iR/TheArk?node-id=0-1&embed-host=share",
                             teaser:"",
                         },{
-                            thumbnail: "/projects/mzaccmainlogo.png",
+                            thumbnail: "/projects/mzacc.svg",
                             title: "Mzacc Global",
                             tag: "Web Development",
                             description:"A clean and modern landing page designed for a startup and its ten sub-companies. Showcases brand identity, smooth color transition, and a scalable layout built to unify multiple services under one platform.",
                             embed: "",
                             teaser: "/videos/mzacc.mp4",
                         },{
-                            thumbnail: "/projects/gm-coffee.svg",
+                            thumbnail: "/projects/gmcoffee.svg",
                             title: "GM Coffee",
                             tag: "Web3, Design",
                             description: "Web3-powered UI for a ‘Buy Me a Coffee’ app, enabling simple crypto donations with a smooth, creator-focused experience.",
                             embed: "https://embed.figma.com/design/xIbUBunXa3SOsbcwIrzMRs/GM-Coffee?node-id=0-1&embed-host=share",
                             teaser: "",
                         },{
-                            thumbnail: "/projects/attend.png",
+                            thumbnail: "/projects/attend.svg",
                             title: "Attend",
                             tag: "Web Development",
-                            description: "A sleek, modern landing page for a cutting-edge tech startup, showcasing their innovative solutions and dynamic team.",
+                            description: "A go-to platform for creating, discovering, and joining events. Whether academic, social, or professional, Attends makes hosting seamless and participation effortless.",
                             embed: "",
                             teaser: "/videos/attend.mp4",
+                        },{
+                            thumbnail: "/projects/scribl.svg",
+                            title: "Scribl",
+                            tag: "Web Development, App development",
+                            description: "A Rexon Special: Scribl – the smarter way for students to capture, organize, and share knowledge. From personal notes to course-linked highlights, Scribl turns study into a collaborative, engaging experience.",
+                            embed: "",
+                            teaser: ""
                         }
                     ].map((project, index) => (
                         <DesignShowcase 
