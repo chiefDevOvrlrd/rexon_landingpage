@@ -10,21 +10,19 @@ import { motion, useInView } from "motion/react";
 import { useRef, useState, useCallback } from "react";
 import Link from "next/link";
 
-// ServiceCard component
+// types
 type ServiceCardProps = {
   title: string;
   image: string;
   description: string;
 };
 
-// SplitText animation component
 type SplitTextProps = {
   text: string;
   isVisible: boolean;
   className?: string;
 };
 
-// design showcase component
 type DesignShowcaseProps = {
     thumbnail: string;
     title: string; 
@@ -35,8 +33,43 @@ type DesignShowcaseProps = {
     custom?: number;
 };
 
+//animation variants
+const letterContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5,   // ⏳ delay before letters start animating
+      staggerChildren: 0.1, // delay between letters
+    },
+  },
+};
 
+const letter = {
+  hidden: { y: 50, opacity: 0 },
+  visible:{
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 20,
+    },
+  },
+};
 
+const textVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({ 
+    opacity: 1, y: 0, 
+    transition: { 
+      duration: 0.5, 
+      delay: i * 2, 
+    } 
+  }), 
+}
+
+//components
 function ServiceCard({ title, image, description }: ServiceCardProps) {
   return (
     <div className={styles.service__grid__item}>
@@ -181,47 +214,7 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
     );
 };
 
-
-const letterContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      delayChildren: 0.5,   // ⏳ delay before letters start animating
-      staggerChildren: 0.1, // delay between letters
-    },
-  },
-};
-
-const letter = {
-  hidden: { y: 50, opacity: 0 },
-  visible:{
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring" as const,
-      stiffness: 100,
-      damping: 20,
-    },
-  },
-};
-
-const textVariant = {
-  hidden: { opacity: 0, y: 50 },
-  visible: (i: number) => ({ 
-    opacity: 1, y: 0, 
-    transition: { 
-      duration: 0.5, 
-      delay: i * 2, 
-    } 
-  }), 
-
-}
-const infoVariant = {
-  hidden: { opacity: 0, y: 5 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: .1 } }, 
-}
-
+//main component
 export default function Home() {
   const serviceSvg = useRef<HTMLDivElement | null>(null);
   const showCaseSvg = useRef<HTMLDivElement | null>(null);
@@ -352,7 +345,11 @@ export default function Home() {
         <div className={styles.showcase__header}>
           <div className={styles.showcase__header__text}>
             <SplitText 
-              text={showCaseHeader} 
+              text="Don&apos;t just take our word" 
+              isVisible={showCaseSvgIsInView} 
+            />
+            <SplitText 
+              text="for it."
               isVisible={showCaseSvgIsInView} 
             />
             <motion.h3

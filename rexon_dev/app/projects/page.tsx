@@ -8,6 +8,7 @@ import WhiteButton from "@/components/ui/WhiteButton";
 import LoaderButton from "@/components/ui/LoaderButton";
 import Footer from "@/components/footer/Footer";
 
+//types
 type DesignShowcaseProps = {
     thumbnail: string;
     title: string; 
@@ -18,10 +19,7 @@ type DesignShowcaseProps = {
     custom?: number;
 };
 
-
-
-
-
+//animation variants
 const textFallVariant = {
     hidden: { opacity: 0, y: -50 },
     visible: (i: number) => ({
@@ -34,8 +32,6 @@ const textFallVariant = {
     }),
 }
 
-
-
 const textVariant = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({ 
@@ -47,6 +43,7 @@ const textVariant = {
     }), 
 };
 
+//components
 const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, custom = 0}: DesignShowcaseProps) => {
     const [hovered, setHovered] = useState(false);
     const [showEmbed, setShowEmbed] = useState(false);
@@ -151,7 +148,7 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
     );
 };
 
-
+//main component
 const Projects = () => {
     const headerRef = useRef<HTMLDivElement | null>(null)
     const contentRef = useRef<HTMLDivElement | null>(null)

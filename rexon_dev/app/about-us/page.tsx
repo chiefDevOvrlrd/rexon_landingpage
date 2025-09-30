@@ -6,8 +6,7 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import Footer from "@/components/footer/Footer";
 
-
-
+//types
 type Profile = {
     profileImage: string,
     name: string,
@@ -18,6 +17,7 @@ type Profile = {
 
 type ProfileCardProps = Profile & { custom?: number };
 
+//animation variants
 const textVariant = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({ 
@@ -29,6 +29,7 @@ const textVariant = {
     }), 
 }
 
+//components
 const ProfileCard = ({profileImage, name, role, bio, custom = 0 }: ProfileCardProps) => {
     return (
         <motion.div className={styles.profileCard}
@@ -55,6 +56,7 @@ const ProfileCard = ({profileImage, name, role, bio, custom = 0 }: ProfileCardPr
     )
 }
 
+//main component
 const AboutUs = () => {
     const headerRef = useRef<HTMLDivElement|null>(null)
 
@@ -70,7 +72,7 @@ const AboutUs = () => {
                             src="/company-animate.svg"
                             alt="rexon members"
                             width={700}
-                            height={500}
+                            height={700}
                             priority
                         />
                     )}
