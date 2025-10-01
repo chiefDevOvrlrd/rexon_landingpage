@@ -64,7 +64,7 @@ const textVariant = {
     opacity: 1, y: 0, 
     transition: { 
       duration: 0.5, 
-      delay: i * 2, 
+      delay: i * .9, 
     } 
   }), 
 }
@@ -225,7 +225,6 @@ export default function Home() {
   const ctaIsInView = useInView(ctaRef, {amount: 0.2, once: true });
 
   const serviceHeader = "How we help you?";
-  const showCaseHeader = "Don\'t just take our word \nfor it.";
   const ctaHeader = `You can dream but don\'t\nneglect the execution!`;
 
   return (
