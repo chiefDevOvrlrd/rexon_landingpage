@@ -213,7 +213,7 @@ const Pricing = () => {
             </div>
             <div className={styles.pricing__getStarted}>
                 <h2>Let&apos;s get rolling!!!</h2>
-                <p>The best way to get an accurate quote is to discuss your project with us. Let's schedule a free consultation to talk about your vision and provide a personalized investment estimate.</p>
+                <p>The best way to get an accurate quote is to discuss your project with us. Let&apos;s schedule a free consultation to talk about your vision and provide a personalized investment estimate.</p>
                 <div className={styles.pricing__getStarted__button}>
                     <BlackButton text="Start your Dream"/>
                 </div>
