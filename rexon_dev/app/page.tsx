@@ -256,12 +256,13 @@ export default function Home() {
           </div>
         </motion.div>
         <div className={styles.hero__image}>
-          <Image src="/hero.svg" 
-            alt="hero image" 
+          <Image src="/hero.svg"
+            alt="hero image"
             className={styles.hero__img}
             width={700}
             height={500}
             priority
+            unoptimized
           />
         </div>
       </motion.div>

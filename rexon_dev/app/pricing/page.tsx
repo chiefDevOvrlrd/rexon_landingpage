@@ -92,7 +92,7 @@ const Pricing = () => {
         <div className={styles.pricing}>
             <div className={styles.pricing__header} ref={headerRef}>
                 <div className={styles.pricing__header__image}>
-                    <a href="https://storyset.com/work">
+                    <a href="https://storyset.com/work" target='_blank' rel='noreferrer'>
                         {headerIsInView && (
                             <Image
                                 src="/consulting-animate.svg"
@@ -156,7 +156,7 @@ const Pricing = () => {
                 </div>
                 <div className={styles.pricing__factors__image}>
                     {factorsIsInView && (
-                        <a href="https://storyset.com/money">
+                        <a href="https://storyset.com/money" rel='noreferrer' target='_blank'>
                             <Image
                                 src="/banknote-animate.svg"
                                 alt="banknote illustration"
@@ -171,7 +171,7 @@ const Pricing = () => {
             <div className={styles.pricing__engagementModel} ref={engagementRef}>
                 <div className={styles.pricing__engagementModel__image}>
                     {engagementIsInView && (
-                        <a href="https://storyset.com/work">
+                        <a href="https://storyset.com/work" rel='noreferrer' target='_blank'>
                             <Image
                                 src="/invoice-animate.svg"
                                 alt="invoice illustration"
