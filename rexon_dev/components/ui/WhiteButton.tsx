@@ -29,7 +29,7 @@ const StyledWrapper = styled.div`
         font-size: 17px;
         border-radius: 30px;
         font-weight: 500;
-        color: inherit;
+        color: var(--background);
     }
 
     button:before {

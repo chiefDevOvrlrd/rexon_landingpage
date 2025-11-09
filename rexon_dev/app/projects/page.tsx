@@ -7,6 +7,7 @@ import Image from "next/image"
 import WhiteButton from "@/components/ui/WhiteButton";
 import LoaderButton from "@/components/ui/LoaderButton";
 import Footer from "@/components/footer/Footer";
+import QuoteDialog from "@/components/dialog/QuoteDialog";
 
 //types
 type DesignShowcaseProps = {
@@ -149,7 +150,7 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
 };
 
 //main component
-const Projects = () => {
+const Projects = ({ toggleDialog }: { toggleDialog: () => void }) => {
     const headerRef = useRef<HTMLDivElement | null>(null)
     const contentRef = useRef<HTMLDivElement | null>(null)
 

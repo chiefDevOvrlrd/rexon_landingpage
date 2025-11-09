@@ -3,7 +3,7 @@
 import styles from "./navbar.module.scss";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import {motion} from "motion/react"
+import {motion, AnimatePresence} from "motion/react"
 import Link from "next/link";
 import BlackButton from "../ui/BlackButton";
 import { useState, useEffect } from 'react';
@@ -21,10 +21,9 @@ const linkVariants = {
 }
 
 
-export default function NavBar () {
+export default function NavBar ({ toggleDialog }: { toggleDialog: () => void }) {
     const [isVisible, setIsVisible] = useState(true);
     const pathname = usePathname();
-
     useEffect(() => {
         let lastScrollY = window.scrollY;
 
@@ -94,10 +93,7 @@ export default function NavBar () {
                     </motion.div>
                 </Link>
                 <div className={styles.nav__button}>
-                    <BlackButton
-                        text="Start your dream" 
-                        onClick={() => window.location.href = "mailto:"}
-                    />
+                    <BlackButton text="Start your dream" onClick={toggleDialog} />
                 </div>
             </div>
         </motion.div>

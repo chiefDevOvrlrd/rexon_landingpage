@@ -215,7 +215,7 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
 };
 
 //main component
-export default function Home() {
+export default function Home({ toggleDialog }: { toggleDialog: () => void }) {
   const serviceSvg = useRef<HTMLDivElement | null>(null);
   const showCaseSvg = useRef<HTMLDivElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
@@ -249,7 +249,7 @@ export default function Home() {
           <div className={styles.hero__button}>
             <BlackButton 
               text="Start your dream" 
-              onClick={() => window.location.href = "mailto:rexonsinc@gmail.com"}
+              onClick={toggleDialog}
             />
           </div>
         </motion.div>
@@ -439,7 +439,8 @@ export default function Home() {
             >Whether you&apos;re a startup looking to make your mark, or an established business aiming to innovate, we&apos;re here to turn your <span>Dream</span> into reality. Let&apos;s build something extraordinary together.</motion.p>
             <div className={styles.cta__container__button}>
               <WhiteButton 
-              text={"Start your dream"}
+              text="Start your dream"
+              onClick={toggleDialog}
               />
             </div>
           </div>
