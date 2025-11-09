@@ -6,8 +6,9 @@ import { useState, useRef, useCallback } from "react"
 import Image from "next/image"
 import WhiteButton from "@/components/ui/WhiteButton";
 import LoaderButton from "@/components/ui/LoaderButton";
+import BlackButton from "@/components/ui/BlackButton";
 import Footer from "@/components/footer/Footer";
-import QuoteDialog from "@/components/dialog/QuoteDialog";
+import { useQuoteDialog } from "@/components/context/QuoteDialogContext";
 
 //types
 type DesignShowcaseProps = {
@@ -150,7 +151,8 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
 };
 
 //main component
-const Projects = ({ toggleDialog }: { toggleDialog: () => void }) => {
+const Projects = () => {
+    const {toggleDialog} = useQuoteDialog()
     const headerRef = useRef<HTMLDivElement | null>(null)
     const contentRef = useRef<HTMLDivElement | null>(null)
 
@@ -278,6 +280,9 @@ const Projects = ({ toggleDialog }: { toggleDialog: () => void }) => {
                         />
                     ))}
                 </div>
+            </div>
+            <div className={styles.projects__cta}>
+                <BlackButton text="Start your dream" onClick={toggleDialog} />
             </div>
             <Footer />
         </div>

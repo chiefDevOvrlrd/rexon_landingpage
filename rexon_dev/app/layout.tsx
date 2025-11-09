@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientWrapper from "./ClientWrapper";
+import { QuoteDialogProvider } from "../components/context/QuoteDialogContext";
 
 export const metadata: Metadata = {
   title: "rexon | Dev",
@@ -21,9 +22,11 @@ export default function RootLayout({
 
       </head>
       <body>
-        <ClientWrapper>
-          {children}
-        </ClientWrapper>
+        <QuoteDialogProvider>
+          <ClientWrapper>
+            {children}
+          </ClientWrapper>
+        </QuoteDialogProvider>
       </body>
     </html>
   );

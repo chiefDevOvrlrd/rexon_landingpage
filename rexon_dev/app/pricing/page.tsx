@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Footer from '@/components/footer/Footer';
 import BlackButton from '@/components/ui/BlackButton';
 import { useRef } from 'react';
+import { useQuoteDialog } from '@/components/context/QuoteDialogContext';
 
 //types
 type SplitTextProps = {
@@ -76,7 +77,8 @@ function SplitText({ text, isVisible, className }: SplitTextProps) {
 };
 
 //main component
-const Pricing = ({ toggleDialog }: { toggleDialog: () => void }) => {
+const Pricing = () => {
+    const { toggleDialog } = useQuoteDialog();
     const headerRef = useRef<HTMLDivElement|null>(null);
     const factorsRef = useRef<HTMLDivElement|null>(null);
     const engagementRef = useRef<HTMLDivElement|null>(null);

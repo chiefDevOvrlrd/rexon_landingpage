@@ -9,6 +9,7 @@ import LoaderButton from "@/components/ui/LoaderButton";
 import { motion, useInView } from "motion/react";
 import { useRef, useState, useCallback } from "react";
 import Link from "next/link";
+import { useQuoteDialog } from "../components/context/QuoteDialogContext";
 
 // types
 type ServiceCardProps = {
@@ -215,7 +216,8 @@ const DesignShowcase = ({thumbnail, title, tag, description, teaser, embed, cust
 };
 
 //main component
-export default function Home({ toggleDialog }: { toggleDialog: () => void }) {
+export default function Home() {
+  const { toggleDialog } = useQuoteDialog();
   const serviceSvg = useRef<HTMLDivElement | null>(null);
   const showCaseSvg = useRef<HTMLDivElement | null>(null);
   const ctaRef = useRef<HTMLDivElement | null>(null);
