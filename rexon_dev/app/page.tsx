@@ -76,7 +76,7 @@ function ServiceCard({ title, image, description }: ServiceCardProps) {
     <div className={styles.service__grid__item}>
       <div className={styles.service__grid__item_face2}>
         <div className={styles.content}>
-          <Image src={image} alt={title} width={200} height={100} priority/>
+          <Image src={image} alt={title} width={200} height={100} priority loading="eager"/>
           <h3>{description}</h3>
         </div>
       </div>

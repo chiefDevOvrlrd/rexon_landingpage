@@ -44,7 +44,6 @@ const ProfileCard = ({profileImage, name, role, bio, custom = 0 }: ProfileCardPr
                     alt={name}
                     width={400}
                     height={400}
-                    priority
                 />
                 <div className={styles.profileCard__info}>
                     <h3>{name}</h3>
