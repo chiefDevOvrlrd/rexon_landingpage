@@ -92,7 +92,6 @@ const Pricing = () => {
         <div className={styles.pricing}>
             <div className={styles.pricing__header} ref={headerRef}>
                 <div className={styles.pricing__header__image}>
-                    <a href="https://storyset.com/work" target='_blank' rel='noreferrer'>
                         {headerIsInView && (
                             <Image
                                 src="/consulting-animate.svg"
@@ -102,7 +101,6 @@ const Pricing = () => {
                                 priority
                             />
                         )}
-                    </a>
                 </div>
                 <div className={styles.pricing__header__text}>
                     <motion.h1
@@ -156,30 +154,26 @@ const Pricing = () => {
                 </div>
                 <div className={styles.pricing__factors__image}>
                     {factorsIsInView && (
-                        <a href="https://storyset.com/money" rel='noreferrer' target='_blank'>
-                            <Image
-                                src="/banknote-animate.svg"
+                        <Image
+                            src="/banknote-animate.svg"
                                 alt="banknote illustration"
                                 width={600}
                                 height={600}
                                 priority
-                            />
-                        </a>
+                        />
                     )}
                 </div>
             </div>
             <div className={styles.pricing__engagementModel} ref={engagementRef}>
                 <div className={styles.pricing__engagementModel__image}>
                     {engagementIsInView && (
-                        <a href="https://storyset.com/work" rel='noreferrer' target='_blank'>
-                            <Image
-                                src="/invoice-animate.svg"
-                                alt="invoice illustration"
-                                width={600}
-                                height={600}
-                                priority
-                            />
-                        </a>
+                        <Image
+                            src="/invoice-animate.svg"
+                            alt="invoice illustration"
+                            width={600}
+                            height={600}
+                            priority
+                        />
                     )}
                 </div>
                 <div className={styles.pricing__engagementModel__header}>
